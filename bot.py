@@ -20,9 +20,8 @@ from aiogram.types import ReplyKeyboardRemove
 from aiogram.contrib.middlewares.logging import LoggingMiddleware
 
 
-
-API_TOKEN = '5730303832:AAGE3lbjVqNaqJ0bUww-eRUzW_dNTkrJXrg'
-DB_URI ="postgresql://postgres:SEvju9ySxpC7lfoeXwwU@containers-us-west-79.railway.app:7370/railway"
+API_TOKEN = '7386975949:AAGUr9aURZLg8Ppj351SbvJGnbQ0pYwBs54'
+DB_URI ="postgresql://postgres:iHeqvJFjTmvKiZhTXKVqFUnQJJTWisig@viaduct.proxy.rlwy.net:47930/railway"
 
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
@@ -42,7 +41,7 @@ async def gen_main_markup():
     markup.add(InlineKeyboardButton("📖BUTTON1📖", callback_data="inst"),
                InlineKeyboardButton("💰BUTTON2💰", callback_data="bal"),
                InlineKeyboardButton("✍NOTE✍️", callback_data="add_comment"),
-			   
+               
                
                )
                                     
@@ -52,34 +51,34 @@ async def gen_main_markup():
     
 @dp.message_handler(commands=['start'])
 async def command_start(message: types.Message):
-	user_id = message.from_user.id
-	username = message.from_user.username
-	if message.chat.type== "private":
+    user_id = message.from_user.id
+    username = message.from_user.username
+    if message.chat.type== "private":
 
 
 
 
-				
+                
 
-		db_object.execute(f"SELECT id FROM users WHERE id = {user_id}")
-	    
-		result = db_object.fetchone()
+        db_object.execute(f"SELECT id FROM users WHERE id = {user_id}")
+        
+        result = db_object.fetchone()
 
-	    
+        
 
-		if not result:
-			db_object.execute("INSERT INTO users(id, username) VALUES (%s, %s)", (user_id, username))
-			db_connection.commit()
-			await bot.send_message(message.chat.id, f"السلام عليكم 🖐\n Welcome {username}\nYou have got 2 points for free",reply_markup=await gen_main_markup())
-	  		
-	  		
-		else:
-			await bot.send_message(message.chat.id, f"السلام عليكم 🖐\n Welcome {username}",reply_markup=await gen_main_markup())
+        if not result:
+            db_object.execute("INSERT INTO users(id, username) VALUES (%s, %s)", (user_id, username))
+            db_connection.commit()
+            await bot.send_message(message.chat.id, f"السلام عليكم 🖐\n Welcome {username}\nYou have got 2 points for free",reply_markup=await gen_main_markup())
+              
+              
+        else:
+            await bot.send_message(message.chat.id, f"السلام عليكم 🖐\n Welcome {username}",reply_markup=await gen_main_markup())
 
-  	
+      
 
-		   
-		    
+           
+            
 
 print("working..............")
 
@@ -90,4 +89,4 @@ if __name__ == '__main__':
 
     
      
-	     		
+                 
